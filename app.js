@@ -1,71 +1,116 @@
-/*jshint esversion: 6 */
-/*jshint esversion: 7*/
-/*jshint esversion: 8*/
-/*jshint globalstrict: true*/
-/* jshint node: true */
-
 "use strict";
+let userScore = 0;
+let computerScore = 0;
+let playing = true;
+const userScoreEl = document.querySelector(".score-board__box__user-score");
+const computerScoreEl = document.querySelector(".score-board__box__comp-score");
+const scoreBoard = document.querySelector(".score-board");
 
-function computerSelection() {
-  const items = ["rock", "paper", "scissors"];
+const result = document.querySelector(".result > p");
 
-  const computerSelection = Math.floor(Math.random() * items.length);
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissors = document.querySelector(".scissors");
 
-  return items[computerSelection];
-}
+const gamePlay = document.querySelector(".btn--game-play");
+const modal = document.querySelector(".game-play__modal");
+const btnCloseModal = document.querySelector(".game-play__close-modal");
 
-function playerSelection() {
-  const playerSelection = prompt(
-    'Choose one: "rock" "paper" or "scissors"'
-  ).toLowerCase();
-  return playerSelection;
-}
+const overlay = document.querySelector(".game-play__overlay");
 
-function playRound(computerSelection, playerSelection) {
-  //rock choice
-  if (playerSelection === "rock") {
-    if (computerSelection === "scissors") {
-      return `You win! ${playerSelection} beats ${computerSelection}`;
-    } else if (computerSelection === "paper") {
-      return `You lose! ${computerSelection} beats ${playerSelection}`;
-    } else if (computerSelection === "rock") {
-      return `It's a draw!`;
-    } else {
-      return `something went wrong.`;
-    }
-  }
-  //paper choice
-  else if (playerSelection === "paper") {
-    if (computerSelection === "rock") {
-      return `You win! ${playerSelection} beats ${computerSelection}`;
-    } else if (computerSelection === "scissors") {
-      return `You lose! ${computerSelection} beats ${playerSelection}`;
-    } else if (computerSelection === "paper") {
-      return `It's a draw!`;
-    } else {
-      return "Something went wrong.";
-    }
-  }
-  //scissors choice
-  else if (playerSelection === "scissors") {
-    if (computerSelection === "paper") {
-      return `You win! ${playerSelection} beats ${computerSelection}`;
-    } else if (computerSelection === "rock") {
-      return `You lose! ${computerSelection} beats ${playerSelection}`;
-    } else if (computerSelection === "scissors") {
-      return `It's a draw!`;
-    } else {
-      return "Something went wrong.";
-    }
+const newGame = document.querySelector(".btn--new");
+
+const main = function () {
+  rock.addEventListener("click", function () {
+    playRound("Rock");
+  });
+
+  paper.addEventListener("click", function () {
+    playRound("Paper");
+  });
+
+  scissors.addEventListener("click", function () {
+    playRound("Scissors");
+  });
+};
+main();
+
+const getComputerChoice = function () {
+  const choices = ["Rock", "Paper", "Scissors"];
+  const randomNumber = Math.floor(Math.random() * 3);
+  return choices[randomNumber];
+};
+
+const userWins = function (userChoice, computerChoice) {
+  userScore++;
+  userScoreEl.textContent = userScore;
+  computerScoreEl.textContent = computerScore;
+  if (userScore <= 4) {
+    result.textContent = `You win! ${userChoice} beats ${computerChoice}`;
   } else {
-    return "Invalid choice.";
+    result.textContent = `You won the game!`;
   }
-}
+};
 
-function game() {
-  for (let round = 0; round < 5; round++) {
-    console.log(playRound(playerSelection(), computerSelection()));
+const userLoses = function (userChoice, computerChoice) {
+  computerScore++;
+  userScoreEl.textContent = userScore;
+  computerScoreEl.textContent = computerScore;
+  if (computerScore <= 4) {
+    result.textContent = `You lose! ${computerChoice} beats ${userChoice}`;
+  } else {
+    result.textContent = `Computer won the game!`;
   }
-}
+};
+const draw = function (userChoice, computerChoice) {
+  result.textContent = `It's a draw!`;
+};
 
-game();
+const playRound = function (userChoice) {
+  const computerChoice = getComputerChoice();
+  if (userScore <= 4 && computerScore <= 4) {
+    switch (userChoice + computerChoice) {
+      case "RockScissors":
+      case "PaperRock":
+      case "ScissorsPaper":
+        userWins(userChoice, computerChoice);
+        break;
+      case "ScissorsRock":
+      case "RockPaper":
+      case "PaperScissors":
+        userLoses(userChoice, computerChoice);
+        break;
+      case "RockRock":
+      case "PaperPaper":
+      case "ScissorsScissors":
+        draw(userChoice, computerChoice);
+        break;
+    }
+  }
+};
+
+const resetGame = function () {
+  userScore = 0;
+  computerScore = 0;
+  userScoreEl.textContent = 0;
+  computerScoreEl.textContent = 0;
+  result.textContent = `Make your move`;
+};
+
+const openModal = function () {
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+};
+
+const closeModal = function () {
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
+};
+
+gamePlay.addEventListener("click", openModal);
+
+btnCloseModal.addEventListener("click", closeModal);
+
+overlay.addEventListener("click", closeModal);
+
+newGame.addEventListener("click", resetGame);

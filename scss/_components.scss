@@ -1,0 +1,211 @@
+.score-board {
+  position: relative;
+  &__badge {
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+  }
+
+  &__user-label {
+    background-color: #b61919;
+    width: 10rem;
+    position: absolute;
+    top: 2.5rem;
+    right: 8.75rem;
+
+    @media only screen and (min-width: $bp-mobile) {
+      right: 2.25rem;
+    }
+
+    @media only screen and (min-width: $bp-mobile-m) {
+      right: 3.75rem;
+    }
+
+    @media only screen and (min-width: $bp-tablet) {
+      right: 15rem;
+    }
+
+    @media only screen and (min-width: $bp-tablet-m) {
+      right: 25rem;
+    }
+
+    @media only screen and (min-width: $bp-desktop-s) {
+      right: 35rem;
+    }
+
+    @media only screen and (min-width: $bp-desktop-m) {
+      right: 50rem;
+    }
+  }
+
+  &__comp-label {
+    background-color: #2d46b9;
+    position: absolute;
+    top: 2.5rem;
+    left: 8.75rem;
+    width: 10rem;
+
+    @media only screen and (min-width: $bp-mobile) {
+      left: 2.25rem;
+    }
+
+    @media only screen and (min-width: $bp-mobile-m) {
+      left: 3.75rem;
+    }
+
+    @media only screen and (min-width: $bp-tablet) {
+      left: 15rem;
+    }
+
+    @media only screen and (min-width: $bp-tablet-m) {
+      left: 25rem;
+    }
+
+    @media only screen and (min-width: $bp-desktop-s) {
+      left: 35rem;
+    }
+
+    @media only screen and (min-width: $bp-desktop-m) {
+      left: 50rem;
+    }
+  }
+  &__box {
+    border: 0.3rem solid black;
+    width: 10rem;
+    font-size: 4rem;
+    text-align: center;
+    margin: 1.5rem auto;
+
+    &__user-score {
+    }
+
+    &__comp-score {
+    }
+  }
+}
+
+.result {
+  font-family: "Amatic SC", cursive;
+  font-weight: 700;
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 0.1rem;
+}
+
+.choices {
+  display: flex;
+  justify-content: center;
+  column-gap: 3rem;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+
+  &__choice {
+    border: 0.5rem solid black;
+    padding: 0.75rem;
+    border-radius: 100%;
+    transition: all 0.2s ease;
+    &--rock {
+    }
+
+    &--paper {
+    }
+
+    &--scissors {
+    }
+  }
+
+  &__choice:hover {
+    cursor: pointer;
+    border: 0.5rem solid white;
+  }
+
+  &__choice:active {
+    transform: translateY(10%);
+  }
+}
+
+.btn {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15rem;
+  color: #444;
+  background: none;
+  border: 0.1 solid black;
+  font-family: inherit;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 400;
+  transition: all 0.2s;
+
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+
+  padding: 0.7rem 2.5rem;
+  border-radius: 50rem;
+  box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
+  &--new {
+    margin-top: 2.5rem;
+
+    @media only screen and (min-width: $bp-mobile) {
+      margin-top: 0rem;
+    }
+  }
+  &--game-play {
+    margin-top: 8rem;
+
+    @media only screen and (min-width: $bp-mobile) {
+      margin-top: 6rem;
+    }
+  }
+}
+
+.btn:active {
+  transform: translateY(10%);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.game-play {
+  &__modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+
+    background-color: white;
+    padding: 6rem;
+    border-radius: 5px;
+    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+    z-index: 10;
+  }
+
+  &__close-modal {
+    position: absolute;
+    top: 1.2rem;
+    right: 2rem;
+    font-size: 3rem;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+  }
+}

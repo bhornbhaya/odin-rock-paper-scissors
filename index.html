@@ -5,13 +5,71 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Rock Paper Scissors</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Pangolin&display=swap"
+        rel="stylesheet">
+
 </head>
 
 <body>
+    <main>
+        <!-- header -->
+        <header class="header">
+            <h1>Rock Paper Scissors</h1>
+        </header>
+
+        <!-- scoreboard -->
+        <div class="score-board">
+            <span class="score-board__badge score-board__user-label">computer
+            </span>
+            <span class="score-board__badge score-board__comp-label">user</span>
+            <div class="score-board__box">
+
+                <span class="score-board__box__user-score">0</span>:<span class="score-board__box__comp-score">0</span>
+            </div>
+        </div>
+
+        <!-- result -->
+        <div class="result">
+            <p>Make your move</p>
+        </div>
+
+        <!-- choices -->
+        <div class="choices">
+            <div id="choices__r" class="choices__choice choices__choice--rock">
+                <img class="rock" src="img/rock.png" alt="rock">
+            </div>
+            <div id="choices__p" class="choices__choice choices__choice--paper">
+                <img class="paper" src="img/paper.png" alt="paper">
+            </div>
+            <div id="choices__s" class="choices__choice choices__choice--scissors">
+                <img class="scissors" src="img/scissors.png" alt="scissors">
+            </div>
+        </div>
+
+        <!-- new game -->
+        <button class="btn btn--new">New game</button>
+
+        <!-- game play -->
+        <div class="game-play">
+            <button class="btn btn--game-play">Gameplay</button>
+
+            <div class="game-play__modal hidden">
+                <button class="game-play__close-modal">&times;</button>
+                <h3>Gameplay</h3>
+                <p>Whoever reaches 5 points first, wins</p>
+            </div>
+            <div class="game-play__overlay hidden"></div>
+        </div>
+
+    </main>
+
 
 
     <script src="app.js" async defer></script>
